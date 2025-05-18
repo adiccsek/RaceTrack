@@ -8,17 +8,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class RaceTrack extends JavaPlugin {
     GameLogic gameLogic = new GameLogic();
-    Boosters boosters = new Boosters( gameLogic, this );
-    FallCheck fallCheck = new FallCheck( gameLogic, this  );
+    Boosters boosters = new Boosters( gameLogic);
+    FallCheck fallCheck = new FallCheck( gameLogic, this);
 
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(gameLogic, this);
-        getServer().getPluginManager().registerEvents(boosters, this);
+
         getServer().getPluginManager().registerEvents(fallCheck, this);
+        if (this.getConfig().getBoolean("booster")) {
+            getServer().getPluginManager().registerEvents(boosters, this);
+        }
     }
     public void onDisable() {
         HandlerList.unregisterAll( gameLogic );
         HandlerList.unregisterAll( boosters );
+        HandlerList.unregisterAll( fallCheck );
     }
 }

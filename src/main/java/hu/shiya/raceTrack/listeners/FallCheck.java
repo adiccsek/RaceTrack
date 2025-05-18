@@ -1,16 +1,12 @@
 package hu.shiya.raceTrack.listeners;
 
 import hu.shiya.raceTrack.RaceTrack;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.jetbrains.annotations.NotNull;
-
-import java.sql.SQLOutput;
-
 
 public class FallCheck implements Listener {
     private final GameLogic instance;
@@ -33,6 +29,7 @@ public class FallCheck implements Listener {
                 landedY = player.getLocation().getY();
             }
         }
+        if (fromY == landedY) return;
         double verticalDistance = landedY - fromY;
         int height = raceTrack.getConfig().getInt("max-height-fall");
         if (verticalDistance > height) { //config file value kell majd

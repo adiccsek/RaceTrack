@@ -13,34 +13,28 @@ import org.jetbrains.annotations.NotNull;
 
 public class Boosters implements Listener {
     private final GameLogic instance;
-    private final RaceTrack raceTrack;
-    public Boosters( GameLogic instance, RaceTrack raceTrack ) {
+    public Boosters(GameLogic instance) {
         this.instance = instance;
-        this.raceTrack = raceTrack;
     }
 
     @EventHandler
     public void onSlimeJump(PlayerMoveEvent event) {
-        if (raceTrack.getConfig().getBoolean("booster")) {
-            long Time;
-            Player player = event.getPlayer();
-            if (!instance.getPlayers(player.getUniqueId())) {
-                return;
-            }
-            @NotNull Material material = player.getLocation().subtract(0, 1, 0).getBlock().getType();
-            if (material == Material.SLIME_BLOCK) {
-                player.setVelocity(new Vector(player.getVelocity().getX(), 1.6, player.getVelocity().getZ()));
-                System.out.println("Slime");
-            }
-            if (material == Material.DIAMOND_BLOCK) {
-                player.addPotionEffect(new PotionEffect(
-                                PotionEffectType.SPEED,
-                                100,
-                                1
-                        )
-                );
-                System.out.println("Diamond");
-            }
+        long Time;
+        Player player = event.getPlayer();
+        if (!instance.getPlayers(player.getUniqueId())) {
+            return;
+        }
+        @NotNull Material material = player.getLocation().subtract(0, 1, 0).getBlock().getType();
+        if (material == Material.SLIME_BLOCK) {
+            player.setVelocity(new Vector(player.getVelocity().getX(), 1.6, player.getVelocity().getZ()));
+        }
+        if (material == Material.DIAMOND_BLOCK) {
+            player.addPotionEffect(new PotionEffect(
+                            PotionEffectType.SPEED,
+                            100,
+                            1
+                            )
+            );
         }
     }
 }
