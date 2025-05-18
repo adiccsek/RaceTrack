@@ -1,0 +1,2 @@
+max-height-fall: 5 #This shouldn't be higher than the slime block under the map
+booster: true

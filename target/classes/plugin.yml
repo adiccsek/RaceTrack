@@ -1,0 +1,6 @@
+name: RaceTrack
+version: '1.0-SNAPSHOT'
+main: hu.shiya.raceTrack.RaceTrack
+api-version: '1.21'
+authors: [ Shiya ]
+description: A Plugin that welcomes a newly joined player
